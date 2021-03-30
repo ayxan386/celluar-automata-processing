@@ -1,21 +1,58 @@
-final int w = 480;
-final int h = 480;
+final int w = 1080;
+final int h = 1080;
+final int a = 10;
+int[][] grid;
 void setup(){
-  size(480,480);
+  size(1080,1080);
   background(0);
-  fill(255);
-  circle(w/2, h/2, 45);
+  drawInitial();
+  frameRate(60);
 }
 
 void draw(){
- loadPixels();
  for(int row = 0; row < h; row++){
    for(int col = 0; col < w; col++){
-     int k = round(noise(col, row));
+     int k = grid[row][col];
      color t = color(255*k, 255*k, 255*k);
-     print(row * w + col);
-     pixels[row * w + col] = t;
+     fill(t);
+     square(col*a, row*a, a);
    }
  }
- updatePixels();
+ updateGrid();
+}
+
+void updateGrid(){
+ for(int row = 0; row < h; row++){
+   for(int col = 1; col < w-1; col++){
+     int left = grid[row][col-1];
+     int right = grid[row][col+1];
+     int centre = grid[row][col];
+     int res = 0;
+     if(left == 1 && centre == 1 && right == 0){
+       res = 1;
+     }
+     else if(left == 1 && centre == 0 && right == 1){
+       res = 1;
+     }
+     else if(left == 0 && centre == 1 && right == 0){
+       res = 1;
+     }
+     else if(left == 0 && centre == 1 && right == 1){
+       res = 1;
+     }else if(left == 0 && centre == 0 && right == 1){
+       res = 1;
+     }
+   grid[row][col] = res;
+  } 
+ }
+}
+
+void drawInitial(){
+ grid = new int[h][w];
+ for(int row = 0; row < h; row++){
+   for(int col = 0; col < w; col++){
+     int k = round(noise(col*0.2, row*0.1));
+     grid[row][col] = k;
+   }
+ }
 }
