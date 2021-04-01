@@ -8,7 +8,7 @@ void setup(){
   background(123);
   
   p.position = new PVector(200,200);
-  p.velocity = new PVector(1,0);
+  p.velocity = PVector.random2D().mult(2);
   p.radius = 5;
   p.c = color(0,0,255);
 }

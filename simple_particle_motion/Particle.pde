@@ -24,5 +24,11 @@ class Particle{
   
   void update(){
    this.position.add(velocity);
+   if(position.x > W || position.x < 0){
+     velocity.x = -velocity.x;
+   }
+   if(position.y > H || position.y < 0){
+     velocity.y = -velocity.y;
+   }
   }
 }
