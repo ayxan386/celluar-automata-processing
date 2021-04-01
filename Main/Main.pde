@@ -12,7 +12,7 @@ int[][] grid;
 
 void setup(){
   size(1080,720);
-  frameRate(2);
+  frameRate(10);
   background(0);
   drawInitial();
   //printAllPossible();
@@ -59,7 +59,7 @@ void drawInitial(){
  grid = new int[h][w];
  for(int row = 0; row < h; row++){
    for(int col = 0; col < w; col++){
-     int k = round(random(0.55));
+     int k = round(random(0.53));
      //int k = round(noise(col*0.12, row*0.321));
      grid[row][col] = k;
    }
