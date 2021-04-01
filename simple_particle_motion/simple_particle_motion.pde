@@ -1,19 +1,37 @@
-Particle p = new Particle();
+import java.util.*;
 
-final int W = 400;
-final int H = 400;
+List<Particle> particles;
+
+final int W = 640;
+final int H = 480;
+final int K = 3;
 
 void setup(){
-  size(400, 400);
-  background(123);
+  size(640, 480);
   
-  p.position = new PVector(200,200);
-  p.velocity = PVector.random2D().mult(2);
-  p.radius = 5;
-  p.c = color(0,0,255);
+  initRandomParticleArray(10);
 }
 
 void draw(){
-  p.draw();
-  p.update();
+  background(123,123,123,100);
+  for(Particle part: particles){
+    part.draw();
+    part.update();
+  }
+}
+
+void initRandomParticleArray(int len){
+  particles = new ArrayList<Particle>();
+  for(int i = 0; i < len; i++){
+    Particle p1 = new Particle();
+    p1.position = new PVector(200,200);
+    p1.velocity = PVector.random2D().mult(K);
+    p1.radius = 8;
+    p1.c = randomColor();
+    particles.add(p1);
+  } 
+}
+
+color randomColor(){
+  return color(random(255), random(255), random(255));
 }
