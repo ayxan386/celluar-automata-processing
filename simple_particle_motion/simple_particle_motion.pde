@@ -2,21 +2,26 @@ import java.util.*;
 
 List<Particle> particles;
 
-final int W = 640;
-final int H = 480;
-final int K = 3;
+final int W = 1500;
+final int H = 720;
+final int K = 1;
 
 void setup(){
-  size(640, 480);
-  
-  initRandomParticleArray(5);
+  size(1500, 720);
+  //frameRate(10);
+  initRandomParticleArray(30);
 }
 
 void draw(){
   background(123,123,123,100);
+  
   for(Particle part: particles){
-    part.applyForce(new PVector(0,0.1));
+    //part.applyForce(new PVector(0,0.1));
     part.collideWithParticles(particles);
+    part.interactWithParticles(particles);
+  }
+  
+  for(Particle part: particles){
     part.update();
     part.draw();
   }
@@ -29,7 +34,7 @@ void initRandomParticleArray(int len){
     p1.position = new PVector(random(width),random(height));
     //p1.position = PVector.random2D().mult(200);
     p1.velocity = PVector.random2D().mult(K);
-    p1.radius = 30;
+    p1.radius = 20;
     p1.c = randomColor();
     particles.add(p1);
   } 

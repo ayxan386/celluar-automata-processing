@@ -1,5 +1,6 @@
 class Particle{
   private static final float elastic_coef = 0.9;
+  private final float MAX_DIST = width*width + height*height;
   public PVector position;
   public PVector velocity;
   public PVector acc = new PVector(0,0);
@@ -21,9 +22,9 @@ class Particle{
     noStroke();
     fill(c);
     circle(position.x, position.y, radius);
-    stroke(3);
-    noFill();
-    circle(position.x, position.y, 2*radius);
+    //stroke(3);
+    //noFill();
+    //circle(position.x, position.y, 2*radius);
     pop();
   }
   
@@ -44,12 +45,18 @@ class Particle{
       if(p != this){
         float dist = this.position.dist(p.position);
         if(dist <= radius){
-          //PVector c = this.velocity.copy();
-          //this.velocity.sub(p.velocity);
-          //p.velocity.sub(c);
-          velocity.rotate(-PI);
-          //p.velocity.rotate(-PI);
+          velocity.rotate(PI);
         }
+      }
+    }
+  }
+  
+  void interactWithParticles(List<Particle> particles){
+    for(Particle p: particles){
+      if(p != this){
+        float dist = this.position.dist(p.position);
+        float forceMag = map(dist, 0, MAX_DIST, 1, -1);
+        applyForce(p.position.copy().sub(position).limit(0.1).mult(forceMag));
       }
     }
   }
