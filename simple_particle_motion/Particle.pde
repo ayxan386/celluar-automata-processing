@@ -6,6 +6,7 @@ class Particle{
   public PVector acc = new PVector(0,0);
   public int radius;
   public color c;
+  public float mass;
   
   public Particle(PVector p,PVector v,int r,color col){
     this.position = p;
@@ -44,7 +45,7 @@ class Particle{
     for(Particle p: particles){
       if(p != this){
         float dist = this.position.dist(p.position);
-        if(dist <= radius){
+        if(dist <= radius + p.radius){
           velocity.rotate(PI);
         }
       }
@@ -62,6 +63,6 @@ class Particle{
   }
   
   void applyForce(PVector f){
-    acc.add(f);
+    acc.add(f.div(mass));
   }
 }
