@@ -62,6 +62,16 @@ class Particle{
     }
   }
   
+  void enableAttraction(List<Particle> particles, float G){
+    for(Particle p: particles){
+      if(p != this){
+        float dist = this.position.dist(p.position) + 100;
+        float forceMag = G * mass * p.mass / (dist*dist);
+        applyForce(p.position.copy().sub(position).normalize().mult(forceMag));
+      }
+    }
+  }
+  
   void applyForce(PVector f){
     acc.add(f.div(mass));
   }
