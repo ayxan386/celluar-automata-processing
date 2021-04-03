@@ -31,7 +31,7 @@ void setup() {
 }
 
 void draw() {
-  //background(123,123,123,100);
+  background(123,123,123,100);
 
   for (Particle part : particles) {
     //part.applyForce(new PVector(0,0.1));
