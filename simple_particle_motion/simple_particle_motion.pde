@@ -35,7 +35,7 @@ void draw() {
 
   for (Particle part : particles) {
     //part.applyForce(new PVector(0,0.1));
-    //part.collideWithParticles(particles);
+    part.collideWithParticles(particles);
     //part.interactWithParticles(particles);
     part.enableAttraction(particles, G);
   }
@@ -46,28 +46,7 @@ void draw() {
     }
     part.draw();
   }
-}
-
-void initRandomParticleArray(int len) {
-  particles = new ArrayList<Particle>();
-  for (int i = 0; i < len; i++) {
-    Particle p1 = new Particle();
-    p1.position = new PVector(random(width), random(height));
-    //p1.position = PVector.random2D().mult(200);
-    p1.velocity = PVector.random2D().mult(K);
-    p1.c = randomColor();
-    p1.mass = random(20) + 15;
-    p1.radius = (int)p1.mass;
-
-    if (i == 0) {
-      p1.position = new PVector(width/2, height/2);
-      p1.radius = 50;
-      p1.c = color(255, 0, 0);
-      p1.mass = 10000;
-    }
-
-    particles.add(p1);
-  }
+  noLoop();
 }
 
 void initCustomerPartilces() {
@@ -76,33 +55,23 @@ void initCustomerPartilces() {
   p1.position = new PVector(width/2 - 120, height/2 + 10);
   p1.velocity = PVector.random2D().mult(K/100);
   particles.add(p1);
+  
   p1 = getMParticle(10000000, 100);
   p1.position = new PVector(width/2 + 120, height/2 - 10);
   particles.add(p1);
   p1 = getMParticle(10000000, 100);
   p1.position = new PVector(width/2, height/2 - 150);
   particles.add(p1);
-  for (int i = 0; i < 1; i++) {
+  
+  for (int i = 0; i < 4; i++) {
     p1 = getMParticle(10, 10);
-    p1.velocity = new PVector(0,1);
-    p1.position = new PVector(width/2, height/2);
+    p1.velocity = new PVector(0,random(1));
+    p1.position = new PVector(width/2 + random(50), height/2 + random(50));
     particles.add(p1);
   }
 }
 
-Particle getMParticle(float mass, int r) {
-  Particle p1 = new Particle();
-  p1.position = new PVector(random(width), random(height));
-  p1.velocity = PVector.random2D().mult(K/10);
-  p1.c = randomColor();
-  p1.mass = mass;
-  p1.radius = r;
-  return p1;
-}
 
-color randomColor() {
-  return color(random(255), random(255), random(255));
-}
 
 void slider(float theColor) {
   println("a slider event. setting background to "+theColor);
