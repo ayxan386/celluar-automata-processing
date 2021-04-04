@@ -22,10 +22,11 @@ class Particle{
     ellipseMode(CENTER);
     noStroke();
     fill(c);
-    circle(position.x, position.y, radius);
-    //stroke(3);
+    circle(position.x, position.y, radius * 2);
+    stroke(3);
     //noFill();
     //circle(position.x, position.y, 2*radius);
+    line(position.x, position.y, position.x, position.y + radius);
     pop();
   }
   
@@ -44,8 +45,9 @@ class Particle{
   void collideWithParticles(List<Particle> particles){
     for(Particle p: particles){
       if(p != this){
-        float dist = this.position.dist(p.position);
-        if(dist <= radius + p.radius){
+        float dist = PVector.dist(this.position, p.position);
+        //println(String.format("dist: %.4f; rads: %d\n",dist, radius + p.radius));
+        if(dist <= (radius + p.radius)){
           velocity.rotate(PI);
         }
       }

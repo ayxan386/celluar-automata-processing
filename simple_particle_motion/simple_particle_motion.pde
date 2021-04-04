@@ -42,30 +42,31 @@ void draw() {
 
   for (Particle part : particles) {
     if (part.mass < 100) {
-      part.update();
+      
     }
+    part.update();
     part.draw();
   }
-  noLoop();
+  //noLoop();
 }
 
 void initCustomerPartilces() {
   particles = new ArrayList<Particle>();
-  Particle p1 = getMParticle(10000000, 100);
+  Particle p1 = getMParticle(10000000, 50);
   p1.position = new PVector(width/2 - 120, height/2 + 10);
   p1.velocity = PVector.random2D().mult(K/100);
   particles.add(p1);
   
-  p1 = getMParticle(10000000, 100);
+  p1 = getMParticle(10000000, 50);
   p1.position = new PVector(width/2 + 120, height/2 - 10);
   particles.add(p1);
-  p1 = getMParticle(10000000, 100);
+  p1 = getMParticle(10000000, 50);
   p1.position = new PVector(width/2, height/2 - 150);
   particles.add(p1);
   
-  for (int i = 0; i < 4; i++) {
-    p1 = getMParticle(10, 10);
-    p1.velocity = new PVector(0,random(1));
+  for (int i = 0; i < 5; i++) {
+    p1 = getMParticle(10, 5);
+    p1.velocity = new PVector(0,random(1) * 3);
     p1.position = new PVector(width/2 + random(50), height/2 + random(50));
     particles.add(p1);
   }
