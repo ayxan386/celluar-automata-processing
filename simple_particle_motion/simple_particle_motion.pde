@@ -6,18 +6,18 @@ List<Particle> particles;
 final int W = 1500;
 final int H = 720;
 final int K = 1;
-float G = 9e-3;
+float G = 0.43;
 
 ControlP5 cp5;
 
 void setup() {
   size(1500, 720);
-  //frameRate(10);
+  //frameRate(5);
   //initRandomParticleArray(30);
   cp5 = new ControlP5(this);
   cp5.addSlider("G value")
     .setPosition(100, 15)
-    .setRange(0, 0.01)
+    .setRange(0, 1)
     .setWidth(900)
     .setValue(G)
     .addCallback(new CallbackListener() {
@@ -41,9 +41,6 @@ void draw() {
   }
 
   for (Particle part : particles) {
-    if (part.mass < 100) {
-      
-    }
     part.update();
     part.draw();
   }
@@ -53,7 +50,7 @@ void draw() {
 void initCustomerPartilces() {
   particles = new ArrayList<Particle>();
   Particle p1 = getMParticle(1000, 50);
-  p1.position = new PVector(55, 55);
+  p1.position = new PVector(500, 200);
   particles.add(p1);
   
   p1 = getMParticle(1000, 50);
@@ -63,10 +60,11 @@ void initCustomerPartilces() {
   p1.position = new PVector(55, height - 55);
   particles.add(p1);
   
-  for (int i = 0; i < 7; i++) {
+  for (int i = 0; i < 10; i++) {
     p1 = getMParticle(10, 5);
-    p1.velocity = PVector.random2D();
-    p1.position = new PVector(width/2 + random(50), height/2 + random(50));
+    p1.velocity = PVector.random2D().mult(2);
+    p1.position = new PVector(random(width), random(height));
+    //p1.position = new PVector(400, 400);
     particles.add(p1);
   }
 }
