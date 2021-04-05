@@ -1,6 +1,7 @@
 class Particle{
   private static final float elastic_coef = 0.9;
   private final float MAX_DIST = width*width + height*height;
+  private static final float eps = 0.8;
   public PVector position;
   public PVector velocity;
   public PVector acc = new PVector(0,0);
@@ -48,7 +49,10 @@ class Particle{
         float dist = PVector.dist(this.position, p.position);
         //println(String.format("dist: %.4f; rads: %d\n",dist, radius + p.radius));
         if(dist <= (radius + p.radius)){
-          velocity.rotate(PI);
+          PVector dir = velocity.copy().rotate(PI).normalize();
+          PVector totalMomentum = velocity.copy().mult(mass).add(p.velocity.copy().mult(p.mass));
+          float mag = totalMomentum.mag();
+          applyForce(dir.mult(mag));
         }
       }
     }

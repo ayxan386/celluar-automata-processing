@@ -6,7 +6,7 @@ List<Particle> particles;
 final int W = 1500;
 final int H = 720;
 final int K = 1;
-float G = 9e-5;
+float G = 9e-3;
 
 ControlP5 cp5;
 
@@ -52,21 +52,20 @@ void draw() {
 
 void initCustomerPartilces() {
   particles = new ArrayList<Particle>();
-  Particle p1 = getMParticle(10000000, 50);
-  p1.position = new PVector(width/2 - 120, height/2 + 10);
-  p1.velocity = PVector.random2D().mult(K/100);
+  Particle p1 = getMParticle(1000, 50);
+  p1.position = new PVector(55, 55);
   particles.add(p1);
   
-  p1 = getMParticle(10000000, 50);
-  p1.position = new PVector(width/2 + 120, height/2 - 10);
+  p1 = getMParticle(1000, 50);
+  p1.position = new PVector(width - 55, height - 55);
   particles.add(p1);
-  p1 = getMParticle(10000000, 50);
-  p1.position = new PVector(width/2, height/2 - 150);
+  p1 = getMParticle(1000, 50);
+  p1.position = new PVector(55, height - 55);
   particles.add(p1);
   
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 7; i++) {
     p1 = getMParticle(10, 5);
-    p1.velocity = new PVector(0,random(1) * 3);
+    p1.velocity = PVector.random2D();
     p1.position = new PVector(width/2 + random(50), height/2 + random(50));
     particles.add(p1);
   }
