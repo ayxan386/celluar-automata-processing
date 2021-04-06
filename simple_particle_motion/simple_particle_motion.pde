@@ -31,7 +31,7 @@ void setup() {
 }
 
 void draw() {
-  background(123,123,123,100);
+  background(123, 123, 123, 100);
 
   for (Particle part : particles) {
     //part.applyForce(new PVector(0,0.1));
@@ -52,14 +52,14 @@ void initCustomerPartilces() {
   Particle p1 = getMParticle(1000, 50);
   p1.position = new PVector(500, 200);
   particles.add(p1);
-  
+
   p1 = getMParticle(1000, 50);
   p1.position = new PVector(width - 55, height - 55);
   particles.add(p1);
   p1 = getMParticle(1000, 50);
   p1.position = new PVector(55, height - 55);
   particles.add(p1);
-  
+
   for (int i = 0; i < 10; i++) {
     p1 = getMParticle(10, 5);
     p1.velocity = PVector.random2D().mult(2);
@@ -67,10 +67,4 @@ void initCustomerPartilces() {
     //p1.position = new PVector(400, 400);
     particles.add(p1);
   }
-}
-
-
-
-void slider(float theColor) {
-  println("a slider event. setting background to "+theColor);
 }
