@@ -46,25 +46,3 @@ void draw() {
   }
   //noLoop();
 }
-
-void initCustomerPartilces() {
-  particles = new ArrayList<Particle>();
-  Particle p1 = getMParticle(1000, 50);
-  p1.position = new PVector(500, 200);
-  particles.add(p1);
-
-  p1 = getMParticle(1000, 50);
-  p1.position = new PVector(width - 55, height - 55);
-  particles.add(p1);
-  p1 = getMParticle(1000, 50);
-  p1.position = new PVector(55, height - 55);
-  particles.add(p1);
-
-  for (int i = 0; i < 10; i++) {
-    p1 = getMParticle(10, 5);
-    p1.velocity = PVector.random2D().mult(2);
-    p1.position = new PVector(random(width), random(height));
-    //p1.position = new PVector(400, 400);
-    particles.add(p1);
-  }
-}
