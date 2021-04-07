@@ -36,7 +36,7 @@ void draw() {
   for (Particle part : particles) {
     //part.applyForce(new PVector(0,0.1));
     part.collideWithParticles(particles);
-    //part.interactWithParticles(particles);
+    part.interactWithParticles(particles);
     part.enableAttraction(particles, G);
   }
 

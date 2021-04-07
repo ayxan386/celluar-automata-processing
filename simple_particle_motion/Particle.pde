@@ -24,10 +24,6 @@ class Particle{
     noStroke();
     fill(c);
     circle(position.x, position.y, radius * 2);
-    stroke(3);
-    //noFill();
-    //circle(position.x, position.y, 2*radius);
-    //line(position.x, position.y, position.x + velocity.x * 15, position.y + velocity.y * 15);
     pop();
   }
   
@@ -45,7 +41,6 @@ class Particle{
   }
   
   void collideWithParticles(List<Particle> particles){
-    float S = 40;
     for(Particle p: particles){
       if(p != this){
         float dist = PVector.dist(this.position, p.position);
@@ -55,9 +50,6 @@ class Particle{
           PVector totalMomentum = velocity.copy().mult(mass).add(p.velocity.copy().mult(p.mass));
           float mag = totalMomentum.mag() * eps;
           dir.mult(mag);
-          //stroke(c);
-          //strokeWeight(2);
-          //line(position.x, position.y, position.x + dir.x * S, position.y + dir.y * S);
           velocity = dir.div(mass);
         }
       }
