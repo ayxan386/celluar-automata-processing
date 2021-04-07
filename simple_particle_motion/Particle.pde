@@ -32,12 +32,12 @@ class Particle{
    acc.mult(0);
    if(velocity.mag() < 0.01)return;
    this.position.add(velocity);
-   if(position.x + radius > W || position.x - radius < 0){
-     velocity.x = -elastic_coef * velocity.x;
-   }
-   if(position.y  + radius > H || position.y - radius< 0){
-     velocity.y = -elastic_coef * velocity.y;
-   }
+   //if(position.x + radius > W || position.x - radius < 0){
+   //  velocity.x = -elastic_coef * velocity.x;
+   //}
+   //if(position.y  + radius > H || position.y - radius< 0){
+   //  velocity.y = -elastic_coef * velocity.y;
+   //}
   }
   
   void collideWithParticles(List<Particle> particles){
